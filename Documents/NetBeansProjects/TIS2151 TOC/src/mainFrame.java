@@ -28,6 +28,8 @@ public class mainFrame extends javax.swing.JFrame {
 
         mainTabbedPane = new javax.swing.JTabbedPane();
         homePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        introText = new javax.swing.JTextPane();
         partOnePanel = new javax.swing.JPanel();
         partTwoTabbedPanel = new javax.swing.JTabbedPane();
         phaseOnePanel = new javax.swing.JPanel();
@@ -36,20 +38,32 @@ public class mainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TIS2151 Assignment");
         setName(""); // NOI18N
-        setPreferredSize(new java.awt.Dimension(900, 750));
-        setSize(new java.awt.Dimension(900, 750));
+        setPreferredSize(new java.awt.Dimension(900, 720));
+        setSize(new java.awt.Dimension(900, 720));
 
         mainTabbedPane.setName(""); // NOI18N
+
+        introText.setEditable(false);
+        introText.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        introText.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        introText.setText("TIS2151 Theory of Computation\n\nAssignment (20%)\n\nTrimester 1 2019/2020\n\nLecturer: Dr. Nbhan D Salih\n\nTutorial Group: TT03\n\nGroup Members: -\n\n1- Muhammad Fitri Bin Amalludin - 1161300958\n2- Lim Zi Jie - 1161100143\n3- Ang Chong Wei - 1161304060\n4- Tebihi, Hicham - 1141326937");
+        jScrollPane1.setViewportView(introText);
 
         javax.swing.GroupLayout homePanelLayout = new javax.swing.GroupLayout(homePanel);
         homePanel.setLayout(homePanelLayout);
         homePanelLayout.setHorizontalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(homePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+                .addContainerGap())
         );
         homePanelLayout.setVerticalGroup(
             homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGroup(homePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(369, Short.MAX_VALUE))
         );
 
         mainTabbedPane.addTab("Home Tab", homePanel);
@@ -58,11 +72,11 @@ public class mainFrame extends javax.swing.JFrame {
         partOnePanel.setLayout(partOnePanelLayout);
         partOnePanelLayout.setHorizontalGroup(
             partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 895, Short.MAX_VALUE)
         );
         partOnePanelLayout.setVerticalGroup(
             partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 722, Short.MAX_VALUE)
         );
 
         mainTabbedPane.addTab("Part 1 (NFA to RG)", partOnePanel);
@@ -73,11 +87,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseOnePanel.setLayout(phaseOnePanelLayout);
         phaseOnePanelLayout.setHorizontalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         phaseOnePanelLayout.setVerticalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase One (CFG to CNF)", phaseOnePanel);
@@ -86,11 +100,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseTwoPanel.setLayout(phaseTwoPanelLayout);
         phaseTwoPanelLayout.setHorizontalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
+            .addGap(0, 890, Short.MAX_VALUE)
         );
         phaseTwoPanelLayout.setVerticalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 384, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase Two (CNF to CYK)", phaseTwoPanel);
@@ -148,6 +162,8 @@ public class mainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel homePanel;
+    private javax.swing.JTextPane introText;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JPanel partOnePanel;
     private javax.swing.JTabbedPane partTwoTabbedPanel;
