@@ -1,3 +1,5 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -52,5 +54,13 @@ public class Nfa {
         return (object.state_name);
     }
     
- 
+    public boolean get_start()
+    {
+        return (start_state);
+    }
+    
+    public boolean get_final()
+    {
+        return (final_state);
+    }
 }

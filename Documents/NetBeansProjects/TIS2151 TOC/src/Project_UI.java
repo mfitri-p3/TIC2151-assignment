@@ -1,10 +1,12 @@
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-
+import java.util.*;
 /**
  *
  * @author LIM
@@ -16,6 +18,8 @@ public class Project_UI extends javax.swing.JFrame{
     String string_3;
     String string_4;
     private static Nfa starting_state;
+    private static ArrayList<Nfa> state_list;
+    private boolean string_status;
     /**
      * Creates new form Project_UI
      */
@@ -33,8 +37,14 @@ public class Project_UI extends javax.swing.JFrame{
         // Create state. Each object represent a state.  
         Nfa state_1 = new Nfa(state_name_1,true,false);
         Nfa state_2 = new Nfa(state_name_2,false,false);
-        Nfa state_3 = new Nfa(state_name_3,false,false);
-                
+        Nfa state_3 = new Nfa(state_name_3,false,true);
+        
+        // Create a list to store all state
+        state_list = new ArrayList();
+        state_list.add(state_1);
+        state_list.add(state_2);
+        state_list.add(state_3);
+        
         // Set the transition for the state 
         state_1.set_totransition(0, state_2);
         state_1.set_totransition(1, state_1);
@@ -42,30 +52,55 @@ public class Project_UI extends javax.swing.JFrame{
         state_2.set_totransition(0, state_3);
         state_3.set_totransition(0, state_3);
         state_3.set_totransition(1, state_3);
-        starting_state = state_1;
+        
+        // find which state is starting state
+        for(int x = 0; x < state_list.size(); x++)
+        {
+            if(state_list.get(x).get_start() == true)
+            {
+                starting_state = state_list.get(x);
+            }
+        }    
     }
     
     public void Get_string(Nfa state,String string1, String string2, String string3, String string4)
     { 
-        if(string1 != "")
+        if(string1.isEmpty())
+        {
+            jLabel1.setText("Rejected");
+        }
+        else
         {
             System.out.println(string1);
             Check_String(state,string1);
-            
-            if(string2 != "")
-            {
-                System.out.println(string2);
-                
-                if(string3 != "")
-                {
-                    System.out.println(string3);
-                    if(string4 != "")
-                    {    
-                        System.out.println(string4);
-                    } 
-                }
-            }
-        }    
+        }
+        if(string2.isEmpty())
+        {
+            jLabel2.setText("Rejected");
+        }
+        else
+        {
+            System.out.println(string2);
+            Check_String(state,string2);
+        }
+        if(string3.isEmpty())
+        {
+            jLabel3.setText("Rejected");
+        }
+        else
+        {
+            System.out.println(string3);
+            Check_String(state,string3);
+        }
+        if(string4.isEmpty())
+        {
+            jLabel4.setText("Rejected");
+        }
+        else
+        {
+            System.out.println(string4);
+            Check_String(state,string4);
+        }
     }
      
     public void Check_String(Nfa start_state,String string)
@@ -80,13 +115,21 @@ public class Project_UI extends javax.swing.JFrame{
         {
             //convert character to int 
             transition_value = Character.getNumericValue(string.charAt(x));
-            
+               
             // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
             temp_state = start_state.get_transition(transition_value);
             
+            if(temp_state.get_final())
+            {
+                string_status = true;
+            }
+            else if(temp_state.get_final()!= true)
+            {
+                string_status = false;
+            }
             // temporary state becomes the state that state 1 point with transition 0
             temp_statename = temp_state.get_statename(temp_state);
-            
+
             // transist to the state then continue to transist to other state
             // Example, S1 to S2. Then, from S2 to another state.
             // If the state transist to itself, the temp_state remains at that state
@@ -94,6 +137,51 @@ public class Project_UI extends javax.swing.JFrame{
             
             // print out the state's name to know which state 
             System.out.println(temp_statename);
+        }
+        
+        if(string_status == true)
+        {
+            change_status(string_status,string);
+        }
+        else if(string_status == false)
+        {
+            change_status(string_status,string);
+        }
+    }
+    
+    public void change_status(boolean status, String string)
+    {
+        if(status == true && string == string_1)
+        {
+            jLabel1.setText("Accepted");
+        }
+        else if(status == false && string == string_1)
+        {
+            jLabel1.setText("Rejected");
+        }
+        else if(status == true && string == string_2)
+        {
+            jLabel2.setText("Accepted");
+        }
+        else if(status == false && string == string_2)
+        {
+            jLabel2.setText("Rejected");
+        }
+        else if(status == true && string == string_3)
+        {
+            jLabel3.setText("Accepted");
+        }
+        else if(status == false && string == string_3)
+        {
+            jLabel3.setText("Rejected");
+        }
+        else if(status == true && string == string_4)
+        {
+            jLabel4.setText("Accepted");
+        }
+        else if(status == false && string == string_4)
+        {
+            jLabel4.setText("Rejected");
         }
     }
     /**
@@ -111,6 +199,10 @@ public class Project_UI extends javax.swing.JFrame{
         TextField2 = new javax.swing.JTextField();
         TextField3 = new javax.swing.JTextField();
         TextField4 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,35 +231,50 @@ public class Project_UI extends javax.swing.JFrame{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(TextField4)
-                    .addComponent(TextField3)
-                    .addComponent(TextField2)
-                    .addComponent(TextField1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addComponent(Clear_Button)))
-                .addGap(87, 87, 87))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Clear_Button))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(Clear_Button))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(TextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -179,6 +286,11 @@ public class Project_UI extends javax.swing.JFrame{
         TextField2.setText("");
         TextField3.setText("");
         TextField4.setText("");
+        
+        jLabel1.setText("");
+        jLabel2.setText("");
+        jLabel3.setText("");
+        jLabel4.setText("");
     }//GEN-LAST:event_Clear_ButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -224,6 +336,7 @@ public class Project_UI extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(Project_UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -244,5 +357,9 @@ public class Project_UI extends javax.swing.JFrame{
     private javax.swing.JTextField TextField3;
     private javax.swing.JTextField TextField4;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
