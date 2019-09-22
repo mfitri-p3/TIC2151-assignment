@@ -101,7 +101,6 @@ public class mainFrame extends javax.swing.JFrame {
         mainTabbedPane.setPreferredSize(new java.awt.Dimension(900, 729));
 
         homePanel.setPreferredSize(new java.awt.Dimension(900, 720));
-        homePanel.setLayout(new java.awt.GridLayout(2, 3));
 
         introTextPane.setEditable(false);
         introTextPane.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
