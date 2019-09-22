@@ -17,8 +17,9 @@ public class Nfa {
     String state_name;
     boolean start_state;
     boolean final_state;
-    private Map<Integer,Nfa> to_transition = new HashMap<Integer,Nfa>();
-    private Map<Character,Nfa> char_to_transition = new HashMap<Character,Nfa>();
+    private Map<String,Nfa> to_transition = new HashMap<String,Nfa>();
+    //private Map<Integer,Nfa> to_transition = new HashMap<Integer,Nfa>();
+    //private Map<Character,Nfa> char_to_transition = new HashMap<Character,Nfa>();
     
     // set the state name when create a state and set if the state is starting state or final state
     // if the state is starting state, then start_state is true, final_state is false
@@ -38,7 +39,12 @@ public class Nfa {
     
     // every state has its own transition to other state through 0 or 1.
     // set the transition to the state. Example, 0 is to state 1 and 1 is to itself
-    public void set_totransition(int to_int, Nfa to_state)
+    public void set_totransition(String to_str, Nfa to_state)
+    {
+        to_transition.put(to_str, to_state);
+    }
+    /*
+    public void set_totransition(String to_int, Nfa to_state)
     {
         to_transition.put(to_int, to_state);
     }
@@ -47,8 +53,13 @@ public class Nfa {
     {
         char_to_transition.put(to_char, to_state);
     }
-    
-    // get and retrieve the state 
+    */
+    // get and retrieve the state
+    public Nfa get_transition(String to_str)
+    {
+        return (to_transition.get(to_str));
+    }
+    /*
     public Nfa get_transition(int to_int)
     {
         return (to_transition.get(to_int));
@@ -58,7 +69,10 @@ public class Nfa {
     {
         return (char_to_transition.get(to_char));
     }
-    
+    */
+    public String get_statename(){
+        return state_name;
+    }
     public String get_statename(Nfa object)
     {
         return (object.state_name);

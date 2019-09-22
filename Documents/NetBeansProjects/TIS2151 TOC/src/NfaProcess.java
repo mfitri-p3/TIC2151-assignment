@@ -9,6 +9,7 @@
  * @author mfitr
  */
 import java.util.*;
+import java.lang.Integer;
 
 public class NfaProcess {
     private String[] alphabetList = new String[4];
@@ -26,7 +27,7 @@ public class NfaProcess {
             alphabetList[i] = "";
         }
     }
-    //set nfa state
+    //add nfa state/variable
     public void addState(Nfa state){
         stateList.add(state);
     }
@@ -37,6 +38,7 @@ public class NfaProcess {
     
     //set a state as start state
     public void setStart(String variable){
+        //assume all states as non-start
         for (int i = 0; i < stateList.size(); i++) {
             stateList.get(i).start_state = false;
         }
@@ -49,11 +51,11 @@ public class NfaProcess {
     }
     //set a state as final state
     public void setFinal(String variable){
-        for (Nfa state : stateList){
-            if (state.state_name.equals(variable)){
-                state.final_state = true;
+        for (int i = 0; i < stateList.size(); i++){
+            if (stateList.get(i).state_name.equals(variable)) {
+                stateList.get(i).final_state = true;
             }
-        }
+        } 
     }
     //reset all states as non-final state
     public void resetAllFinal(){
@@ -62,8 +64,22 @@ public class NfaProcess {
         }
     }
     //set the transition of every state
-    public void setTransition(Object alpha, String name){
+    public void setTransition(String alpha, String nextState, String name){
+        Nfa temp_state = new Nfa(); //set up temporary NFA object
         
+        //find the name of the next state
+        for (int i = 0; i < stateList.size(); i++) {
+            if (stateList.get(i).state_name.equals(nextState)) {
+                temp_state = stateList.get(i); //if matched, override the temp object
+            }
+        }
+        
+        //finalise the setTransition
+        for (int i = 0; i < stateList.size(); i++) {
+            if (stateList.get(i).state_name.equals(name)) {
+                stateList.get(i).set_totransition(alpha, temp_state);
+            }
+        }
     }
     
     //return a specific state
@@ -78,19 +94,63 @@ public class NfaProcess {
         }
         return null;
     }
+    //return a list of states/variables
+    public ArrayList<Nfa> getStateList(){
+        return stateList;
+    }
     
     //check a string if it is correct or wrong
     public boolean checkString(String string){
-        // Create temporary state for find out the transition of the state 
-        Nfa temp_state = new Nfa();
-        int transition_value;
-        // name the temporary state
-        String temp_statename;
-        
-        for (int x = 0; x < string.length(); x++) {
-            //convert character to int
+        // set up the start state for this method
+        Nfa start_state = new Nfa();
+        try{
+            for(int i = 0; i < stateList.size(); i++){
+                if (stateList.get(i).get_start() == true) {
+                    start_state = stateList.get(i);
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Exception found in NfaProcess - checkString: start state set up");
         }
         
-        return true;
+        // create temporary state for find out the transition of the state 
+        Nfa temp_state = new Nfa();
+        String transition_value = "";
+        // name the temporary state
+        String temp_statename = "";
+        
+        boolean string_status = false;
+        
+        try{
+            for (int x = 0; x < string.length(); x++) {
+                //convert character to str
+                transition_value = Character.toString(string.charAt(x));
+                //use temp_state which acts a buffer for an initial state to transit
+                temp_state = start_state.get_transition(transition_value);
+
+                if (temp_state.get_final()) {
+                    string_status = true;
+                } else if (temp_state.get_final() != true) {
+                    string_status = false;
+                }
+
+                //temp state becomes the initial state with its transition alphabet
+                temp_statename = temp_state.get_statename(temp_state);
+
+                //the initial state become the next state
+                start_state = temp_state;
+                
+                System.out.println(temp_statename);
+            }
+        }
+        catch(IllegalFormatException ife){
+            System.out.println("IllegalFormatException found in NfaProcess - checkString: check per string");
+        }
+        catch(Exception e){
+            System.out.println("Exception found in NfaProcess - checkString: check per string");
+        }
+        
+        return string_status;
     }
 }

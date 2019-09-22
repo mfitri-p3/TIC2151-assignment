@@ -1,3 +1,7 @@
+
+import java.util.HashSet;
+import java.util.Set;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,7 +19,13 @@ public class mainFrame extends javax.swing.JFrame {
      */
     public mainFrame() {
         initComponents();
+        
     }
+    //Initialise your process classes here!
+    //START
+    NfaProcess nfaProcess = new NfaProcess();
+        
+    //END
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,6 +161,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         checkStringButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         checkStringButton.setText("Check String\n");
+        checkStringButton.setEnabled(false);
         checkStringButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkStringButtonActionPerformed(evt);
@@ -166,12 +177,16 @@ public class mainFrame extends javax.swing.JFrame {
         });
 
         stringLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stringLabel1.setPreferredSize(new java.awt.Dimension(100, 30));
 
         stringLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stringLabel2.setPreferredSize(new java.awt.Dimension(100, 30));
 
         stringLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stringLabel3.setPreferredSize(new java.awt.Dimension(100, 30));
 
         stringLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        stringLabel4.setPreferredSize(new java.awt.Dimension(100, 30));
 
         nfaPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -297,6 +312,7 @@ public class mainFrame extends javax.swing.JFrame {
         nfaTransitTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nfaTransitTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -473,33 +489,29 @@ public class mainFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(partOneTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, partOnePanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(stringLabel3)
-                                    .addComponent(stringLabel2)))
                             .addComponent(rgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(partOnePanelLayout.createSequentialGroup()
-                                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(partOnePanelLayout.createSequentialGroup()
-                                        .addGap(524, 524, 524)
-                                        .addComponent(stringLabel4))
-                                    .addGroup(partOnePanelLayout.createSequentialGroup()
-                                        .addGap(448, 448, 448)
-                                        .addComponent(stringLabel1))
-                                    .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stringLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(partOnePanelLayout.createSequentialGroup()
                                 .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stringLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(checkStringButton))
                             .addGroup(partOnePanelLayout.createSequentialGroup()
                                 .addComponent(stringInputField2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stringLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(clearStringButton))
                             .addGroup(partOnePanelLayout.createSequentialGroup()
                                 .addComponent(stringInputField3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stringLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                                 .addComponent(nfaConvertButton)))))
                 .addContainerGap())
         );
@@ -507,34 +519,35 @@ public class mainFrame extends javax.swing.JFrame {
             partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(partOnePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(partOneTitleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nfaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(partOnePanelLayout.createSequentialGroup()
+                        .addComponent(partOneTitleLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nfaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkStringButton))
+                            .addComponent(stringLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(stringInputField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clearStringButton)))
+                    .addComponent(stringLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkStringButton))
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(stringInputField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nfaConvertButton))
+                    .addComponent(stringLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stringInputField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clearStringButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stringInputField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nfaConvertButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(stringLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(119, 119, 119)
-                .addComponent(stringLabel1)
-                .addGap(76, 76, 76)
-                .addComponent(stringLabel2)
-                .addGap(29, 29, 29)
-                .addComponent(stringLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(stringLabel4)
-                .addGap(224, 224, 224))
+                .addGap(544, 544, 544))
         );
 
         mainTabbedPane.addTab("Part 1 (NFA to RG)", partOnePanel);
@@ -545,11 +558,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseOnePanel.setLayout(phaseOnePanelLayout);
         phaseOnePanelLayout.setHorizontalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         phaseOnePanelLayout.setVerticalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1037, Short.MAX_VALUE)
+            .addGap(0, 1127, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase One (CFG to CNF)", phaseOnePanel);
@@ -558,11 +571,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseTwoPanel.setLayout(phaseTwoPanelLayout);
         phaseTwoPanelLayout.setHorizontalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 740, Short.MAX_VALUE)
         );
         phaseTwoPanelLayout.setVerticalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1037, Short.MAX_VALUE)
+            .addGap(0, 1127, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase Two (CNF to CYK)", phaseTwoPanel);
@@ -573,17 +586,11 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(mainTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(mainTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
         );
 
         pack();
@@ -610,7 +617,35 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_stringInputField1ActionPerformed
 
     private void checkStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStringButtonActionPerformed
-        // TODO add your handling code here:
+        try{
+            if (nfaProcess.checkString(stringInputField1.getText()) == true) {
+                stringLabel1.setText("Accepted");
+            }
+            else{
+                stringLabel1.setText("Rejected");
+            }
+            if (nfaProcess.checkString(stringInputField2.getText()) == true) {
+                stringLabel2.setText("Accepted");
+            }
+            else{
+                stringLabel2.setText("Rejected");
+            }
+            if (nfaProcess.checkString(stringInputField3.getText()) == true) {
+                stringLabel3.setText("Accepted");
+            }
+            else{
+                stringLabel3.setText("Rejected");
+            }
+            if (nfaProcess.checkString(stringInputField4.getText()) == true) {
+                stringLabel4.setText("Accepted");
+            }
+            else{
+                stringLabel4.setText("Rejected");
+            }
+        }
+        catch(Exception e){
+            System.out.println("Exception found from checkStringButtonActionPerformed");
+        }
     }//GEN-LAST:event_checkStringButtonActionPerformed
 
     private void clearStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStringButtonActionPerformed
@@ -621,11 +656,131 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_clearStringButtonActionPerformed
 
     private void confirmNfaDefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaDefButtonActionPerformed
-        // TODO add your handling code here:
+        try{
+            //for NFA alphabets
+            nfaProcess.clearAlphabets(); //Clear memory of alphabets
+            nfaProcess.setAlphabet(alphaText1.getText(), 0);
+            nfaProcess.setAlphabet(alphaText2.getText(), 1);
+            nfaProcess.setAlphabet(alphaText3.getText(), 2);
+            nfaProcess.setAlphabet(alphaText4.getText(), 3);
+            nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
+            nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
+            nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
+            nfaTransitTable.setValueAt(alphaText4.getText(), 0, 4);
+
+            //for NFA variables
+            nfaProcess.clearStates(); //Clear memory of variables
+            if (!varText1.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText1.getText(), false, false));
+                nfaTransitTable.setValueAt(varText1.getText(), 1, 0);
+            }
+            if (!varText2.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText2.getText(), false, false));
+                nfaTransitTable.setValueAt(varText2.getText(), 2, 0);
+            }
+            if (!varText3.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText3.getText(), false, false));
+                nfaTransitTable.setValueAt(varText3.getText(), 3, 0);
+            }
+            if (!varText4.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText4.getText(), false, false));
+                nfaTransitTable.setValueAt(varText4.getText(), 4, 0);
+            }
+            if (!varText5.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText5.getText(), false, false));
+                nfaTransitTable.setValueAt(varText5.getText(), 5, 0);
+            }
+            if (!varText6.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText6.getText(), false, false));
+                nfaTransitTable.setValueAt(varText6.getText(), 6, 0);
+            }
+            if (!varText7.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText7.getText(), false, false));
+                nfaTransitTable.setValueAt(varText7.getText(), 7, 0);
+            }
+            if (!varText8.getText().equals("")) {
+                nfaProcess.addState(new Nfa(varText8.getText(), false, false));
+                nfaTransitTable.setValueAt(varText8.getText(), 8, 0);
+            }
+
+            //for NFA start state
+            if (!startText.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (startText.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setStart(startText.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "^", ++i, 0);
+                    }
+                }
+            } else {
+                nfaProcess.getStateList().get(0).start_state = true; //Set the first variable as start state
+            }
+
+            //for NFA final state
+            nfaProcess.resetAllFinal(); //Reset all states to non-final
+            if (!finalText1.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText1.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText1.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText2.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText2.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText2.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText3.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText3.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText3.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText4.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText4.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText4.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+        }
+        catch(NullPointerException npe){
+            System.out.println("NullPointerException found in confirmNfaDefButton");
+        }
+        
+        nfaTransitTable.setEnabled(true);
+        confirmNfaSetButton.setEnabled(true);
     }//GEN-LAST:event_confirmNfaDefButtonActionPerformed
 
     private void confirmNfaSetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaSetButtonActionPerformed
-        // TODO add your handling code here:
+        //Nfa initial_state = new Nfa();
+        Nfa next_state = new Nfa();
+        String transit_alpha = "";
+        
+        try{
+            for (int y = 1; y <= nfaTransitTable.getColumnCount(); y++) {
+                for (int x = 1; x <= nfaTransitTable.getRowCount(); x++) {
+                    if (!nfaTransitTable.getValueAt(x, y).equals("") || !(nfaTransitTable.getValueAt(x, y) == null)) {
+                        transit_alpha = nfaTransitTable.getValueAt(0, y).toString();
+                        next_state = nfaProcess.getState(nfaTransitTable.getValueAt(x, y).toString());
+                        //Set totransition for the current state
+                        nfaProcess.setTransition(transit_alpha, next_state.get_statename(), nfaTransitTable.getValueAt(x, 0).toString());
+                        ;
+                    }
+                }
+            }
+        }
+        catch(NullPointerException e){
+            System.out.println("NullPointerException from confirmNfaSetButton");
+        }
+        
+        checkStringButton.setEnabled(true);
     }//GEN-LAST:event_confirmNfaSetButtonActionPerformed
 
     /**
@@ -654,12 +809,6 @@ public class mainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //Initialise your classes here!
-        //START
-        
-        
-        //END
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

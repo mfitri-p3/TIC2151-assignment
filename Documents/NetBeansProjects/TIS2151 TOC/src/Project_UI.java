@@ -54,14 +54,15 @@ public class Project_UI extends javax.swing.JFrame{
         state_3.set_totransition(1, state_3);
         */
         
-        // Set the transition for the state 
+        // Set the transition for the state
+        /*
         state_1.set_char_totransition('b', state_2);
         state_1.set_char_totransition('a',state_1);
         state_2.set_char_totransition('b', state_2);
         state_2.set_char_totransition('a', state_3);
         state_3.set_char_totransition('a', state_3);
         state_3.set_char_totransition('b', state_3);
-        
+        */
         
         // find which state is starting state
         for(int x = 0; x < state_list.size(); x++)
@@ -132,7 +133,7 @@ public class Project_UI extends javax.swing.JFrame{
                 transition_intvalue = Character.getNumericValue(string.charAt(x));
 
                 // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
-                temp_state = start_state.get_transition(transition_intvalue);
+                //temp_state = start_state.get_transition(transition_intvalue);
 
                 if(temp_state.get_final())
                 {
@@ -162,7 +163,7 @@ public class Project_UI extends javax.swing.JFrame{
                 transition_charvalue = string.charAt(x);
 
                 // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
-                temp_state = start_state.get_char_transition(transition_charvalue);
+                //temp_state = start_state.get_char_transition(transition_charvalue);
 
                 if(temp_state.get_final())
                 {
