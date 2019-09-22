@@ -45,13 +45,23 @@ public class Project_UI extends javax.swing.JFrame{
         state_list.add(state_2);
         state_list.add(state_3);
         
-        // Set the transition for the state 
+       /* // Set the transition for the state 
         state_1.set_totransition(0, state_2);
         state_1.set_totransition(1, state_1);
         state_2.set_totransition(1, state_2);
         state_2.set_totransition(0, state_3);
         state_3.set_totransition(0, state_3);
         state_3.set_totransition(1, state_3);
+        */
+        
+        // Set the transition for the state 
+        state_1.set_char_totransition('b', state_2);
+        state_1.set_char_totransition('a',state_1);
+        state_2.set_char_totransition('b', state_2);
+        state_2.set_char_totransition('a', state_3);
+        state_3.set_char_totransition('a', state_3);
+        state_3.set_char_totransition('b', state_3);
+        
         
         // find which state is starting state
         for(int x = 0; x < state_list.size(); x++)
@@ -107,36 +117,72 @@ public class Project_UI extends javax.swing.JFrame{
     {
          // Create temporary state for find out the transition of the state 
         Nfa temp_state = new Nfa();
-        int transition_value;
+        int transition_intvalue;
+        char transition_charvalue;
         // name the temporary state
         String temp_statename;
         
-        for(int x = 0; x < string.length(); x++)
-        {
-            //convert character to int 
-            transition_value = Character.getNumericValue(string.charAt(x));
-               
-            // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
-            temp_state = start_state.get_transition(transition_value);
-            
-            if(temp_state.get_final())
+        // add the another if statement to determine the string is integer or string.
+        // example, if the first alphabet of the string is 0 or 1 then is interger or else the string is contained alphabet
+        if(string.charAt(0) == '0' || string.charAt(0) == '1')
+        {    
+            for(int x = 0; x < string.length(); x++)
             {
-                string_status = true;
-            }
-            else if(temp_state.get_final()!= true)
-            {
-                string_status = false;
-            }
-            // temporary state becomes the state that state 1 point with transition 0
-            temp_statename = temp_state.get_statename(temp_state);
+                //convert character to int 
+                transition_intvalue = Character.getNumericValue(string.charAt(x));
 
-            // transist to the state then continue to transist to other state
-            // Example, S1 to S2. Then, from S2 to another state.
-            // If the state transist to itself, the temp_state remains at that state
-            start_state = temp_state;
-            
-            // print out the state's name to know which state 
-            System.out.println(temp_statename);
+                // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
+                temp_state = start_state.get_transition(transition_intvalue);
+
+                if(temp_state.get_final())
+                {
+                    string_status = true;
+                }
+                else if(temp_state.get_final()!= true)
+                {
+                    string_status = false;
+                }
+                // temporary state becomes the state that state 1 point with transition 0
+                temp_statename = temp_state.get_statename(temp_state);
+
+                // transist to the state then continue to transist to other state
+                // Example, S1 to S2. Then, from S2 to another state.
+                // If the state transist to itself, the temp_state remains at that state
+                start_state = temp_state;
+
+                // print out the state's name to know which state 
+                System.out.println(temp_statename);
+            }
+        }
+        else
+        {
+            for(int x = 0; x < string.length(); x++)
+            {    
+                //convert character to int 
+                transition_charvalue = string.charAt(x);
+
+                // use the temporary state to get the state that state 1(S1) point with transition 0 or 1
+                temp_state = start_state.get_char_transition(transition_charvalue);
+
+                if(temp_state.get_final())
+                {
+                    string_status = true;
+                }
+                else if(temp_state.get_final()!= true)
+                {
+                    string_status = false;
+                }
+                // temporary state becomes the state that state 1 point with transition 0
+                temp_statename = temp_state.get_statename(temp_state);
+
+                // transist to the state then continue to transist to other state
+                // Example, S1 to S2. Then, from S2 to another state.
+                // If the state transist to itself, the temp_state remains at that state
+                start_state = temp_state;
+
+                // print out the state's name to know which state 
+                System.out.println(temp_statename);
+            }
         }
         
         if(string_status == true)
