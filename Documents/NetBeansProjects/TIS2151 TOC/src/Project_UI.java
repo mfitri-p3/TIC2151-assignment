@@ -1,5 +1,3 @@
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -105,7 +103,7 @@ public class Project_UI extends javax.swing.JFrame{
      
     public void Check_String(Nfa start_state,String string)
     {
-         // Create temporary state for find out the transition of the state 
+        // Create temporary state for find out the transition of the state 
         Nfa temp_state = new Nfa();
         int transition_value;
         // name the temporary state

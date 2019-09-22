@@ -32,11 +32,48 @@ public class mainFrame extends javax.swing.JFrame {
         introTextPane = new javax.swing.JTextPane();
         partOnePanel = new javax.swing.JPanel();
         partOneTitleLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        nfaDefineTable = new javax.swing.JTable();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        nfaTransitTable = new javax.swing.JTable();
         nfaConvertButton = new javax.swing.JButton();
+        stringInputField1 = new javax.swing.JTextField();
+        stringInputField2 = new javax.swing.JTextField();
+        stringInputField3 = new javax.swing.JTextField();
+        stringInputField4 = new javax.swing.JTextField();
+        checkStringButton = new javax.swing.JButton();
+        clearStringButton = new javax.swing.JButton();
+        stringLabel1 = new javax.swing.JLabel();
+        stringLabel2 = new javax.swing.JLabel();
+        stringLabel3 = new javax.swing.JLabel();
+        stringLabel4 = new javax.swing.JLabel();
+        nfaPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        alphaText1 = new javax.swing.JTextField();
+        alphaText2 = new javax.swing.JTextField();
+        alphaText3 = new javax.swing.JTextField();
+        alphaText4 = new javax.swing.JTextField();
+        varText1 = new javax.swing.JTextField();
+        varText2 = new javax.swing.JTextField();
+        varText3 = new javax.swing.JTextField();
+        varText4 = new javax.swing.JTextField();
+        varText5 = new javax.swing.JTextField();
+        varText6 = new javax.swing.JTextField();
+        varText7 = new javax.swing.JTextField();
+        varText8 = new javax.swing.JTextField();
+        startText = new javax.swing.JTextField();
+        finalText1 = new javax.swing.JTextField();
+        finalText2 = new javax.swing.JTextField();
+        finalText3 = new javax.swing.JTextField();
+        finalText4 = new javax.swing.JTextField();
+        finalText5 = new javax.swing.JTextField();
+        finalText6 = new javax.swing.JTextField();
+        finalText7 = new javax.swing.JTextField();
+        finalText8 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        nfaTransitTable = new javax.swing.JTable();
+        confirmNfaDefButton = new javax.swing.JButton();
+        confirmNfaSetButton = new javax.swing.JButton();
+        rgPanel = new javax.swing.JPanel();
         partTwoTabbedPanel = new javax.swing.JTabbedPane();
         phaseOnePanel = new javax.swing.JPanel();
         phaseTwoPanel = new javax.swing.JPanel();
@@ -46,10 +83,12 @@ public class mainFrame extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(900, 720));
         setMinimumSize(new java.awt.Dimension(750, 500));
         setName(""); // NOI18N
+        setPreferredSize(new java.awt.Dimension(900, 720));
         setResizable(false);
         setSize(new java.awt.Dimension(900, 720));
 
         mainTabbedPane.setName(""); // NOI18N
+        mainTabbedPane.setPreferredSize(new java.awt.Dimension(900, 729));
 
         homePanel.setPreferredSize(new java.awt.Dimension(900, 720));
         homePanel.setLayout(new java.awt.GridLayout(2, 3));
@@ -64,29 +103,198 @@ public class mainFrame extends javax.swing.JFrame {
 
         mainTabbedPane.addTab("Home Tab", homePanel);
 
-        partOneTitleLabel.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        partOnePanel.setPreferredSize(new java.awt.Dimension(900, 720));
+
+        partOneTitleLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         partOneTitleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         partOneTitleLabel.setText("Part 1 - NFA and Conversion of NFA to Regular Grammar");
 
-        nfaDefineTable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        nfaDefineTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Alphabets", "Variables", "Start", "Final"
+        nfaConvertButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nfaConvertButton.setText("Convert to RG");
+        nfaConvertButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nfaConvertButtonActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(nfaDefineTable);
+        });
 
-        nfaTransitTable.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        stringInputField1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        stringInputField1.setPreferredSize(new java.awt.Dimension(200, 30));
+        stringInputField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stringInputField1ActionPerformed(evt);
+            }
+        });
+
+        stringInputField2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        stringInputField2.setPreferredSize(new java.awt.Dimension(200, 30));
+        stringInputField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stringInputField2ActionPerformed(evt);
+            }
+        });
+
+        stringInputField3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        stringInputField3.setPreferredSize(new java.awt.Dimension(200, 30));
+        stringInputField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stringInputField3ActionPerformed(evt);
+            }
+        });
+
+        stringInputField4.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        stringInputField4.setPreferredSize(new java.awt.Dimension(200, 30));
+        stringInputField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stringInputField4ActionPerformed(evt);
+            }
+        });
+
+        checkStringButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkStringButton.setText("Check String\n");
+        checkStringButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkStringButtonActionPerformed(evt);
+            }
+        });
+
+        clearStringButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        clearStringButton.setText("Clear");
+        clearStringButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearStringButtonActionPerformed(evt);
+            }
+        });
+
+        stringLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        stringLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        stringLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        stringLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        nfaPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Alphabets");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("Variables");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Start");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Final(s)");
+
+        alphaText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText1.setMaximumSize(new java.awt.Dimension(50, 30));
+        alphaText1.setMinimumSize(new java.awt.Dimension(50, 30));
+        alphaText1.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        alphaText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText2.setMaximumSize(new java.awt.Dimension(50, 30));
+        alphaText2.setMinimumSize(new java.awt.Dimension(50, 30));
+        alphaText2.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        alphaText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText3.setMaximumSize(new java.awt.Dimension(50, 30));
+        alphaText3.setMinimumSize(new java.awt.Dimension(50, 30));
+        alphaText3.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        alphaText4.setEditable(false);
+        alphaText4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText4.setText("e");
+        alphaText4.setMaximumSize(new java.awt.Dimension(50, 30));
+        alphaText4.setMinimumSize(new java.awt.Dimension(50, 30));
+        alphaText4.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText1.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText1.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText1.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText2.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText2.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText2.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText3.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText3.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText3.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText4.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText4.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText4.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText5.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText5.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText5.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText6.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText6.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText6.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText7.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText7.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText7.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        varText8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText8.setMaximumSize(new java.awt.Dimension(50, 30));
+        varText8.setMinimumSize(new java.awt.Dimension(50, 30));
+        varText8.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        startText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        startText.setMaximumSize(new java.awt.Dimension(50, 30));
+        startText.setMinimumSize(new java.awt.Dimension(50, 30));
+        startText.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText1.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText1.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText1.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText2.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText2.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText2.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText3.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText3.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText3.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText4.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText4.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText4.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText5.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText5.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText5.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText6.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText6.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText6.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText7.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText7.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText7.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        finalText8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText8.setMaximumSize(new java.awt.Dimension(50, 30));
+        finalText8.setMinimumSize(new java.awt.Dimension(50, 30));
+        finalText8.setPreferredSize(new java.awt.Dimension(30, 30));
+
+        nfaTransitTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nfaTransitTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -99,7 +307,7 @@ public class mainFrame extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "", "Alphabet 1", "Alphabet 2", "Alphabet 3", "Epsilon"
+                "", "alpha 1", "alpha 2", "alpha 3", "e"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -110,41 +318,223 @@ public class mainFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(nfaTransitTable);
+        nfaTransitTable.setEnabled(false);
+        jScrollPane2.setViewportView(nfaTransitTable);
 
-        nfaConvertButton.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        nfaConvertButton.setText("Convert to RG");
+        confirmNfaDefButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        confirmNfaDefButton.setText("Confirm NFA Definition");
+        confirmNfaDefButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmNfaDefButtonActionPerformed(evt);
+            }
+        });
+
+        confirmNfaSetButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        confirmNfaSetButton.setText("Confirm NFA Transition");
+        confirmNfaSetButton.setEnabled(false);
+        confirmNfaSetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmNfaSetButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout nfaPanelLayout = new javax.swing.GroupLayout(nfaPanel);
+        nfaPanel.setLayout(nfaPanelLayout);
+        nfaPanelLayout.setHorizontalGroup(
+            nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nfaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(nfaPanelLayout.createSequentialGroup()
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(nfaPanelLayout.createSequentialGroup()
+                                .addComponent(finalText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(finalText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(nfaPanelLayout.createSequentialGroup()
+                                .addComponent(alphaText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(alphaText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(alphaText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(alphaText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(nfaPanelLayout.createSequentialGroup()
+                                .addComponent(varText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(varText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(startText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(nfaPanelLayout.createSequentialGroup()
+                        .addComponent(confirmNfaDefButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(confirmNfaSetButton)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        nfaPanelLayout.setVerticalGroup(
+            nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nfaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(nfaPanelLayout.createSequentialGroup()
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(alphaText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alphaText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alphaText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alphaText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(varText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(varText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(startText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(finalText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(finalText8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(nfaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(confirmNfaDefButton)
+                            .addComponent(confirmNfaSetButton))
+                        .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        rgPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout rgPanelLayout = new javax.swing.GroupLayout(rgPanel);
+        rgPanel.setLayout(rgPanelLayout);
+        rgPanelLayout.setHorizontalGroup(
+            rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        rgPanelLayout.setVerticalGroup(
+            rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 191, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout partOnePanelLayout = new javax.swing.GroupLayout(partOnePanel);
         partOnePanel.setLayout(partOnePanelLayout);
         partOnePanelLayout.setHorizontalGroup(
             partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(partOnePanelLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(partOneTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nfaPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(partOnePanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(partOneTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, partOnePanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(stringLabel3)
+                                    .addComponent(stringLabel2)))
+                            .addComponent(rgPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(partOnePanelLayout.createSequentialGroup()
+                                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(partOnePanelLayout.createSequentialGroup()
+                                        .addGap(524, 524, 524)
+                                        .addComponent(stringLabel4))
+                                    .addGroup(partOnePanelLayout.createSequentialGroup()
+                                        .addGap(448, 448, 448)
+                                        .addComponent(stringLabel1))
+                                    .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(partOnePanelLayout.createSequentialGroup()
+                                .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(checkStringButton))
+                            .addGroup(partOnePanelLayout.createSequentialGroup()
+                                .addComponent(stringInputField2, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(clearStringButton))
+                            .addGroup(partOnePanelLayout.createSequentialGroup()
+                                .addComponent(stringInputField3, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                                .addComponent(nfaConvertButton)))))
                 .addContainerGap())
-            .addGroup(partOnePanelLayout.createSequentialGroup()
-                .addGap(370, 370, 370)
-                .addComponent(nfaConvertButton)
-                .addContainerGap(386, Short.MAX_VALUE))
         );
         partOnePanelLayout.setVerticalGroup(
             partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(partOnePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(partOneTitleLabel)
-                .addGap(18, 18, 18)
-                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(nfaConvertButton)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nfaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkStringButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stringInputField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clearStringButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stringInputField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nfaConvertButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119)
+                .addComponent(stringLabel1)
+                .addGap(76, 76, 76)
+                .addComponent(stringLabel2)
+                .addGap(29, 29, 29)
+                .addComponent(stringLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(stringLabel4)
+                .addGap(224, 224, 224))
         );
 
         mainTabbedPane.addTab("Part 1 (NFA to RG)", partOnePanel);
@@ -155,11 +545,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseOnePanel.setLayout(phaseOnePanelLayout);
         phaseOnePanelLayout.setHorizontalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
         phaseOnePanelLayout.setVerticalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGap(0, 1037, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase One (CFG to CNF)", phaseOnePanel);
@@ -168,11 +558,11 @@ public class mainFrame extends javax.swing.JFrame {
         phaseTwoPanel.setLayout(phaseTwoPanelLayout);
         phaseTwoPanelLayout.setHorizontalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
         phaseTwoPanelLayout.setVerticalGroup(
             phaseTwoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
+            .addGap(0, 1037, Short.MAX_VALUE)
         );
 
         partTwoTabbedPanel.addTab("Phase Two (CNF to CYK)", phaseTwoPanel);
@@ -183,15 +573,60 @@ public class mainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private void stringInputField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stringInputField3ActionPerformed
+
+    private void stringInputField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stringInputField4ActionPerformed
+
+    private void nfaConvertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nfaConvertButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nfaConvertButtonActionPerformed
+
+    private void stringInputField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stringInputField2ActionPerformed
+
+    private void stringInputField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stringInputField1ActionPerformed
+
+    private void checkStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStringButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkStringButtonActionPerformed
+
+    private void clearStringButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearStringButtonActionPerformed
+        stringInputField1.setText("");
+        stringInputField2.setText("");
+        stringInputField3.setText("");
+        stringInputField4.setText("");
+    }//GEN-LAST:event_clearStringButtonActionPerformed
+
+    private void confirmNfaDefButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaDefButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmNfaDefButtonActionPerformed
+
+    private void confirmNfaSetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaSetButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmNfaSetButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +654,12 @@ public class mainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(mainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //Initialise your classes here!
+        //START
+        
+        
+        //END
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -229,19 +670,56 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField alphaText1;
+    private javax.swing.JTextField alphaText2;
+    private javax.swing.JTextField alphaText3;
+    private javax.swing.JTextField alphaText4;
+    private javax.swing.JButton checkStringButton;
+    private javax.swing.JButton clearStringButton;
+    private javax.swing.JButton confirmNfaDefButton;
+    private javax.swing.JButton confirmNfaSetButton;
+    private javax.swing.JTextField finalText1;
+    private javax.swing.JTextField finalText2;
+    private javax.swing.JTextField finalText3;
+    private javax.swing.JTextField finalText4;
+    private javax.swing.JTextField finalText5;
+    private javax.swing.JTextField finalText6;
+    private javax.swing.JTextField finalText7;
+    private javax.swing.JTextField finalText8;
     private javax.swing.JPanel homePanel;
     private javax.swing.JTextPane introTextPane;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JButton nfaConvertButton;
-    private javax.swing.JTable nfaDefineTable;
+    private javax.swing.JPanel nfaPanel;
     private javax.swing.JTable nfaTransitTable;
     private javax.swing.JPanel partOnePanel;
     private javax.swing.JLabel partOneTitleLabel;
     private javax.swing.JTabbedPane partTwoTabbedPanel;
     private javax.swing.JPanel phaseOnePanel;
     private javax.swing.JPanel phaseTwoPanel;
+    private javax.swing.JPanel rgPanel;
+    private javax.swing.JTextField startText;
+    private javax.swing.JTextField stringInputField1;
+    private javax.swing.JTextField stringInputField2;
+    private javax.swing.JTextField stringInputField3;
+    private javax.swing.JTextField stringInputField4;
+    private javax.swing.JLabel stringLabel1;
+    private javax.swing.JLabel stringLabel2;
+    private javax.swing.JLabel stringLabel3;
+    private javax.swing.JLabel stringLabel4;
+    private javax.swing.JTextField varText1;
+    private javax.swing.JTextField varText2;
+    private javax.swing.JTextField varText3;
+    private javax.swing.JTextField varText4;
+    private javax.swing.JTextField varText5;
+    private javax.swing.JTextField varText6;
+    private javax.swing.JTextField varText7;
+    private javax.swing.JTextField varText8;
     // End of variables declaration//GEN-END:variables
 }
