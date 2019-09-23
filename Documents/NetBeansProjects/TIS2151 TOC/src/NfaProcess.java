@@ -12,20 +12,18 @@ import java.util.*;
 import java.lang.Integer;
 
 public class NfaProcess {
-    private String[] alphabetList = new String[4];
+    ArrayList<String> alphabetList = new ArrayList<>();
     private ArrayList<Nfa> stateList = new ArrayList();
     
     public NfaProcess(){}
     
     //set alphabet
-    public void setAlphabet(String alphabet, int pos){
-        alphabetList[pos] = alphabet;
+    public void setAlphabet(String alphabet){
+        alphabetList.add(alphabet);
     }
     //clear list of alphabets
     public void clearAlphabets(){
-        for (int i = 0; i < alphabetList.length; i++) {
-            alphabetList[i] = "";
-        }
+        alphabetList.clear();
     }
     //add nfa state/variable
     public void addState(Nfa state){
@@ -64,7 +62,7 @@ public class NfaProcess {
         }
     }
     //set the transition of every state
-    public void setTransition(String alpha, String nextState, String name){
+    public void setTransition(int alpha, String nextState, String name){
         Nfa temp_state = new Nfa(); //set up temporary NFA object
         
         //find the name of the next state
@@ -109,6 +107,7 @@ public class NfaProcess {
                     start_state = stateList.get(i);
                 }
             }
+            System.out.println("start state");
         }
         catch(Exception e){
             System.out.println("Exception found in NfaProcess - checkString: start state set up");
@@ -116,7 +115,7 @@ public class NfaProcess {
         
         // create temporary state for find out the transition of the state 
         Nfa temp_state = new Nfa();
-        String transition_value = "";
+        int transition_value;
         // name the temporary state
         String temp_statename = "";
         
@@ -125,21 +124,31 @@ public class NfaProcess {
         try{
             for (int x = 0; x < string.length(); x++) {
                 //convert character to str
-                transition_value = Character.toString(string.charAt(x));
+                transition_value = Character.getNumericValue(string.charAt(x));
+                System.out.println("Count: " + x + ", Transition value got!");
                 //use temp_state which acts a buffer for an initial state to transit
                 temp_state = start_state.get_transition(transition_value);
-
-                if (temp_state.get_final()) {
+                System.out.println("Count: " + x + ", start state get transition got!");
+                
+                System.out.println("Count: " + x + ", temp state get final= " + temp_state.final_state);
+                
+                if (temp_state.get_final() == true) {
                     string_status = true;
+                    System.out.println("Count: " + x + ", string status true!");
                 } else if (temp_state.get_final() != true) {
                     string_status = false;
+                    System.out.println("Count: " + x + ", string status false!");
                 }
+                
+                System.out.println("Count: " + x + ", NO string status!");
 
                 //temp state becomes the initial state with its transition alphabet
                 temp_statename = temp_state.get_statename(temp_state);
+                System.out.println("Count: " + x + ", get statename for temp state got!");
 
                 //the initial state become the next state
                 start_state = temp_state;
+                System.out.println("Count: " + x + ", start state becomes temp state!");
                 
                 System.out.println(temp_statename);
             }

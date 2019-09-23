@@ -1,5 +1,7 @@
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -212,6 +214,7 @@ public class mainFrame extends javax.swing.JFrame {
         alphaText2.setPreferredSize(new java.awt.Dimension(30, 30));
 
         alphaText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText3.setEnabled(false);
         alphaText3.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText3.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText3.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -289,21 +292,25 @@ public class mainFrame extends javax.swing.JFrame {
         finalText4.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText5.setEnabled(false);
         finalText5.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText5.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText5.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText6.setEnabled(false);
         finalText6.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText6.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText6.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText7.setEnabled(false);
         finalText7.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText7.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText7.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText8.setEnabled(false);
         finalText8.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText8.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText8.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -658,14 +665,14 @@ public class mainFrame extends javax.swing.JFrame {
         try{
             //for NFA alphabets
             nfaProcess.clearAlphabets(); //Clear memory of alphabets
-            nfaProcess.setAlphabet(alphaText1.getText(), 0);
-            nfaProcess.setAlphabet(alphaText2.getText(), 1);
-            nfaProcess.setAlphabet(alphaText3.getText(), 2);
-            nfaProcess.setAlphabet(alphaText4.getText(), 3);
+            nfaProcess.setAlphabet(alphaText1.getText());
+            nfaProcess.setAlphabet(alphaText2.getText());
+            //nfaProcess.setAlphabet(alphaText3.getText());
+            //nfaProcess.setAlphabet(alphaText4.getText(), 3);
             nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
             nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
-            nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
-            nfaTransitTable.setValueAt(alphaText4.getText(), 0, 4);
+            //nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
+            //nfaTransitTable.setValueAt(alphaText4.getText(), 0, 4);
 
             //for NFA variables
             nfaProcess.clearStates(); //Clear memory of variables
@@ -760,17 +767,19 @@ public class mainFrame extends javax.swing.JFrame {
     private void confirmNfaSetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaSetButtonActionPerformed
         //Nfa initial_state = new Nfa();
         Nfa next_state = new Nfa();
-        String transit_alpha = "";
+        int transit_alpha;
         
         try{
-            for (int y = 1; y <= nfaTransitTable.getColumnCount(); y++) {
-                for (int x = 1; x <= nfaTransitTable.getRowCount(); x++) {
-                    if (!nfaTransitTable.getValueAt(x, y).equals("") || !(nfaTransitTable.getValueAt(x, y) == null)) {
-                        transit_alpha = nfaTransitTable.getValueAt(0, y).toString();
-                        next_state = nfaProcess.getState(nfaTransitTable.getValueAt(x, y).toString());
+            for (int y = 1; y <= nfaProcess.alphabetList.size(); y++) {
+                for (int x = 1; x <= nfaProcess.getStateList().size(); x++) {
+                    if (nfaTransitTable.getValueAt(x, y) != "" || nfaTransitTable.getValueAt(x, y) != null) {
+                        System.out.println("Cell : x=" + x + ", y= " + y);
+                        transit_alpha = Character.getNumericValue(nfaTransitTable.getValueAt(0, y).toString().charAt(0));
+                        next_state = (nfaProcess.getState(nfaTransitTable.getValueAt(x, y).toString()));
                         //Set totransition for the current state
-                        nfaProcess.setTransition(transit_alpha, next_state.get_statename(), nfaTransitTable.getValueAt(x, 0).toString());
-                        ;
+                        nfaProcess.getStateList().get(x-1).set_totransition(transit_alpha, next_state);
+                        System.out.println("Transition done!");
+                        
                     }
                 }
             }
