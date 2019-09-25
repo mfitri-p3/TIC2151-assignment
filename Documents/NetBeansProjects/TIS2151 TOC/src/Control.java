@@ -67,6 +67,30 @@ public void restart(){
       }
     }
 
+    public void printgui(javax.swing.JTextArea area)
+    {
+      for(int i=0; i<20; i++){
+        if(!model.getcnf()[i][0].equals("/")){
+            for(int j=0; j<20; j++){
+                if(!model.getcnf()[i][j].equals("/")) {
+                    if(j==0) area.append(model.getcnf()[i][j]+" --> ");
+                      else if(j==1 || model.getcnf()[i][j-1].equals("/")) area.append(model.getcnf()[i][j]);
+                      else  area.append("|"+model.getcnf()[i][j]);
+                }
+                }
+
+
+
+     area.append("\n");
+            }
+          }
+          if(area==view.jTextArea4){
+            for(int i=0; i<newst; i++){
+              area.append(newstate[i][0]+" --> "+newstate[i][1]+"\n");
+            }
+          }
+}
+
     public void printnewstate()
     {
       for(int i=0; i<5; i++){
@@ -238,13 +262,19 @@ public int containhowmany(String s,String var){
 
 
          first();
+         printdata();
+         printgui(view.jTextArea1);
+
          second();
+         printgui(view.jTextArea2);
          third();
-          printdata();
+         printgui(view.jTextArea3);
+          //printdata();
           forth();
-          System.out.println();
-          printdata();
-          printnewstate();
+          printgui(view.jTextArea4);
+        //  System.out.println();
+        //  printdata();
+        //  printnewstate();
 
       //  restart();
 
