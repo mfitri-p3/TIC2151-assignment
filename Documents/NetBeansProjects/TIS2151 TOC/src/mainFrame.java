@@ -702,6 +702,8 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
                 
+                rgStr = rgStr + "\n";
+                
                 System.out.println("Step " + step + ": " + rgStr);
                 
                 step++;
