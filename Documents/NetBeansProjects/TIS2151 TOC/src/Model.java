@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part2;
+//package part2;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Model {
   private String[][] cfg;
   private String[][] cnf;
   private int linescfg;
-  private int[] cols;
+  public int[] cols;
 
   public void initiateModel (int x,int[] cols){
     linescfg=x;

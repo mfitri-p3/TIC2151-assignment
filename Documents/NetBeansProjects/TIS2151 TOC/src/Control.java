@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package part2;
+//package part2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  * @author machok
  */
 public class Control {
-  private View view;
+  private PartTwoPhaseOneView view;
   private Model model;
 
   private int rows;
@@ -22,7 +22,8 @@ public class Control {
   private String[][] newstate;
   private int newst;
 
-  public Control(View view,Model model){
+  //Replaced "View" with "PartTwoPhaseOneView"
+  public Control(PartTwoPhaseOneView view,Model model){
     this.view=view;
     this.model=model;
     cols= new int[10];
@@ -128,6 +129,7 @@ public void restart(){
       for(int y=0; y<20; y++){
         if(data[k][y].equals("e")){
           model.setcnf("/",k,y);
+          model.cols[k]--;
            String var=model.getcnf()[k][0];
            data=model.getcnf();
            for(int i=19; i>=0; i--){
@@ -185,36 +187,67 @@ public String[][] forth(){
   for(int i=0; i<20; i++){
     for(int j=1; j<20; j++){
       if(data[i][j].length()==2  && !data[i][j].equals(data[i][j].toUpperCase())){
-        String temp=Character.toString(data[i][j].charAt(0));
-        Boolean T=false;
-        for(int k=0; k<5; k++){
-          if(temp.equals(newstate[k][1])){ model.setcnf(data[i][j].replace(temp,newstate[k][0]),i,j); T=true;}
-          }
-          if(T==false){
-            newstate[newst][1]=temp;
-            model.setcnf(data[i][j].replace(temp,newstate[newst][0]),i,j);
-            newst++;
+        String d=Character.toString(data[i][j].charAt(0));
+        String c=Character.toString(data[i][j].charAt(1));
 
-          }
+        if(d.equals(d.toLowerCase())) checkforth(d,data[i][j],i,j);
+
+        if(c.equals(c.toLowerCase()))  checkforth(c,data[i][j],i,j);
+
 
       }
       if(data[i][j].length()==3 && data[i][j].equals(data[i][j].toUpperCase())){
             String temp=Character.toString(data[i][j].charAt(0));
              temp=temp+Character.toString(data[i][j].charAt(1));
 
-             Boolean T=false;
-             for(int k=0; k<5; k++){
-               if(temp.equals(newstate[k][1])){ model.setcnf(data[i][j].replace(temp,newstate[k][0]),i,j); T=true;}
-               }
-               if(T==false){
-                 newstate[newst][1]=temp;
-                 model.setcnf(data[i][j].replace(temp,newstate[newst][0]),i,j);
-                 newst++;
+             checkforth(temp,data[i][j],i,j);
+      }
+     else if(data[i][j].length()==3){
 
-               }
+        String temp=Character.toString(data[i][j].charAt(0));
+        String tem=Character.toString(data[i][j].charAt(0));
+         temp=temp+Character.toString(data[i][j].charAt(1));
+
+        checkforth(temp,data[i][j],i,j);
+
+Boolean T=false;
+        for(int k=0; k<5; k++){
+          if(tem.equals(newstate[k][1])){
+          newstate[newst-1][1]=  temp.replace(tem,newstate[k][0]);
+             T=true;}
+          }
+          if(T==false){
+            newstate[newst][1]=tem;
+            newstate[newst-1][1]=temp.replace(tem,newstate[newst][0]);
+
+            newst++;
+
+          }
+
+      //  temp=Character.toString(data[i][j].charAt(2));
+      //  checkforth(temp,data[i][j],i,j);
+      i=0; j=0;
+
       }
     }}
     return data;
+}
+
+public void checkforth(String temp,String s,int i,int j){
+
+
+   Boolean T=false;
+   for(int k=0; k<5; k++){
+     if(temp.equals(newstate[k][1])){ model.setcnf(s.replace(temp,newstate[k][0]),i,j); T=true;}
+     }
+
+     if(T==false){
+       newstate[newst][1]=temp;
+       model.setcnf(s.replace(temp,newstate[newst][0]),i,j);
+       newst++;
+
+     }
+
 }
 
 
@@ -262,10 +295,11 @@ public int containhowmany(String s,String var){
 
 
          first();
-         printdata();
+        // printdata();
          printgui(view.jTextArea1);
 
          second();
+         printdata();
          printgui(view.jTextArea2);
          third();
          printgui(view.jTextArea3);

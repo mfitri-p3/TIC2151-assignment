@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.util.*;
 import javax.swing.*;
 
@@ -19,6 +20,22 @@ public class mainFrame extends javax.swing.JFrame {
      */
     public mainFrame() {
         initComponents();
+        
+        try{
+            PartTwoPhaseOneView view = new PartTwoPhaseOneView();
+            Model model = new Model();
+            Control control = new Control(view,model);
+            view.setVisible(true);
+            
+            //phaseOnePanel.add(view);
+            internalPhaseOnePanel.setLayout(new BorderLayout());
+            internalPhaseOnePanel.add(view, BorderLayout.CENTER);
+            
+        }
+        catch(Exception e){
+            System.out.println("Exception catched, unable to display Part 2 Phase One");
+            System.out.println(e.toString());
+        }
     }
     //Initialise your process classes here!
     //START
@@ -89,7 +106,7 @@ public class mainFrame extends javax.swing.JFrame {
         resetNfaButton = new javax.swing.JButton();
         partTwoTabbedPanel = new javax.swing.JTabbedPane();
         phaseOnePanel = new javax.swing.JPanel();
-        phaseOneDeskPane = new javax.swing.JDesktopPane();
+        internalPhaseOnePanel = new javax.swing.JPanel();
         phaseTwoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,13 +224,11 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel4.setText("Final(s)");
 
         alphaText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        alphaText1.setText("0");
         alphaText1.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText1.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText1.setPreferredSize(new java.awt.Dimension(30, 30));
 
         alphaText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        alphaText2.setText("1");
         alphaText2.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText2.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText2.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -585,17 +600,18 @@ public class mainFrame extends javax.swing.JFrame {
 
         phaseOnePanel.setPreferredSize(new java.awt.Dimension(740, 720));
 
-        phaseOneDeskPane.setPreferredSize(new java.awt.Dimension(720, 500));
+        internalPhaseOnePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        internalPhaseOnePanel.setPreferredSize(new java.awt.Dimension(720, 600));
 
-        javax.swing.GroupLayout phaseOneDeskPaneLayout = new javax.swing.GroupLayout(phaseOneDeskPane);
-        phaseOneDeskPane.setLayout(phaseOneDeskPaneLayout);
-        phaseOneDeskPaneLayout.setHorizontalGroup(
-            phaseOneDeskPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+        javax.swing.GroupLayout internalPhaseOnePanelLayout = new javax.swing.GroupLayout(internalPhaseOnePanel);
+        internalPhaseOnePanel.setLayout(internalPhaseOnePanelLayout);
+        internalPhaseOnePanelLayout.setHorizontalGroup(
+            internalPhaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 716, Short.MAX_VALUE)
         );
-        phaseOneDeskPaneLayout.setVerticalGroup(
-            phaseOneDeskPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+        internalPhaseOnePanelLayout.setVerticalGroup(
+            internalPhaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout phaseOnePanelLayout = new javax.swing.GroupLayout(phaseOnePanel);
@@ -604,15 +620,15 @@ public class mainFrame extends javax.swing.JFrame {
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(phaseOnePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(phaseOneDeskPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(internalPhaseOnePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         phaseOnePanelLayout.setVerticalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(phaseOnePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(phaseOneDeskPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(616, Short.MAX_VALUE))
+                .addComponent(internalPhaseOnePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(516, Short.MAX_VALUE))
         );
 
         partTwoTabbedPanel.addTab("Phase One (CFG to CNF)", phaseOnePanel);
@@ -1005,21 +1021,6 @@ public class mainFrame extends javax.swing.JFrame {
                 new mainFrame().setVisible(true);
             }
         });
-        
-        try{
-            View view = new View();
-            Model model = new Model();
-            Control control = new Control(view,model);
-            //view.setVisible(true);
-            
-            //JInternalFrame phaseOneFrame = new JInternalFrame();
-            JPanel phaseOneIntPanel = new JPanel();
-            phaseOneIntPanel.add(view);
-            //phaseOneDeskPane
-        }
-        catch(Exception e){
-            System.out.println("Exception catched, unable to display Part 2 Phase One");
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1040,6 +1041,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField finalText7;
     private javax.swing.JTextField finalText8;
     private javax.swing.JPanel homePanel;
+    private javax.swing.JPanel internalPhaseOnePanel;
     private javax.swing.JTextPane introTextPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -1055,7 +1057,6 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel partOnePanel;
     private javax.swing.JLabel partOneTitleLabel;
     private javax.swing.JTabbedPane partTwoTabbedPanel;
-    private javax.swing.JDesktopPane phaseOneDeskPane;
     private javax.swing.JPanel phaseOnePanel;
     private javax.swing.JPanel phaseTwoPanel;
     private javax.swing.JButton resetNfaButton;
