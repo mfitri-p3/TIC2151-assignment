@@ -40,7 +40,7 @@ public class mainFrame extends javax.swing.JFrame {
     //Initialise your process classes here!
     //START
     NfaProcess nfaProcess = new NfaProcess();
-    RegularGrammar rgGen = new RegularGrammar();
+    //RegularGrammar rgGen = new RegularGrammar();
         
     //END
 
@@ -671,9 +671,9 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_stringInputField4ActionPerformed
 
     private void nfaConvertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nfaConvertButtonActionPerformed
-        for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
-            rgGen.addState(nfaProcess.getState(i));
-        }
+        //for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+        //    rgGen.addState(nfaProcess.getState(i));
+        //}
         
         String rgStr = "";
         StringBuilder mainStr = new StringBuilder();
@@ -681,14 +681,14 @@ public class mainFrame extends javax.swing.JFrame {
         //rgGen.convertToRG();
         
         ArrayList<Nfa> nfaList = nfaProcess.getStateList();
-        ArrayList<Integer> alphaList = nfaProcess.alphabetList;
+        ArrayList<String> alphaList = nfaProcess.alphabetList;
         
         try{
             int step = 1;
             for (Nfa nfaTemp : nfaList) {
                 if (nfaTemp.start_state == true) {
                     rgStr = nfaTemp.state_name + " -> "; //first part of the grammar line
-                    for (int key : alphaList){ //secord part of the grammar line
+                    for (String key : alphaList){ //secord part of the grammar line
                         rgStr = rgStr + String.valueOf(key);
                         rgStr = rgStr + nfaTemp.get_transition(key).state_name;
                         rgStr = rgStr + " | ";
@@ -703,7 +703,7 @@ public class mainFrame extends javax.swing.JFrame {
                 
                 if (nfaTemp.start_state == false) {
                     rgStr = nfaTemp.state_name + " -> "; //first part of the grammar line
-                    for (int key : alphaList){ //secord part of the grammar line
+                    for (String key : alphaList){ //secord part of the grammar line
                         rgStr = rgStr + String.valueOf(key);
                         rgStr = rgStr + nfaTemp.get_transition(key).state_name;
                         rgStr = rgStr + " | ";
@@ -783,17 +783,20 @@ public class mainFrame extends javax.swing.JFrame {
             //for NFA alphabets
             nfaProcess.clearAlphabets(); //Clear memory of alphabets
             if (!alphaText1.getText().isBlank()) {
-                nfaProcess.setAlphabet(Integer.parseInt(alphaText1.getText()));
+                //nfaProcess.setAlphabet(Integer.parseInt(alphaText1.getText()));
+                nfaProcess.setAlphabet(alphaText1.getText());
                 //rgGen.addAlpha(Integer.getInteger(alphaText1.getText()));
                 nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
             }
             if (!alphaText2.getText().isBlank()) {
-                nfaProcess.setAlphabet(Integer.parseInt(alphaText2.getText()));
+                //nfaProcess.setAlphabet(Integer.parseInt(alphaText2.getText()));
+                nfaProcess.setAlphabet(alphaText2.getText());
                 //rgGen.addAlpha(Integer.getInteger(alphaText2.getText()));
                 nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
             }
             if (!alphaText3.getText().isBlank()) {
-                nfaProcess.setAlphabet(Integer.parseInt(alphaText3.getText()));
+                //nfaProcess.setAlphabet(Integer.parseInt(alphaText3.getText()));
+                nfaProcess.setAlphabet(alphaText3.getText());
                 //rgGen.addAlpha(Integer.getInteger(alphaText3.getText()));
                 nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
             }
@@ -929,14 +932,16 @@ public class mainFrame extends javax.swing.JFrame {
     private void confirmNfaSetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmNfaSetButtonActionPerformed
         //Nfa initial_state = new Nfa();
         Nfa next_state = new Nfa();
-        int transit_alpha;
+        //int transit_alpha;
+        String transit_alpha;
         
         try{
             for (int y = 1; y <= nfaProcess.alphabetList.size(); y++) {
                 for (int x = 1; x <= nfaProcess.getStateList().size(); x++) {
                     if (nfaTransitTable.getValueAt(x, y).toString() != "" || nfaTransitTable.getValueAt(x, y) != null) {
                         System.out.println("Cell : x=" + x + ", y= " + y);
-                        transit_alpha = Character.getNumericValue(nfaTransitTable.getValueAt(0, y).toString().charAt(0));
+                        //transit_alpha = Character.getNumericValue(nfaTransitTable.getValueAt(0, y).toString().charAt(0));
+                        transit_alpha = nfaTransitTable.getValueAt(0, y).toString();
                         next_state = (nfaProcess.getState(nfaTransitTable.getValueAt(x, y).toString()));
                         //Set totransition for the current state
                         nfaProcess.getStateList().get(x-1).set_totransition(transit_alpha, next_state);
@@ -946,9 +951,9 @@ public class mainFrame extends javax.swing.JFrame {
                 }
             }
             
-            for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
-                rgGen.addState(nfaProcess.getState(i));
-            }
+            //for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+            //    rgGen.addState(nfaProcess.getState(i));
+            //}
         }
         catch(NullPointerException e){
             System.out.println("NullPointerException from confirmNfaSetButton");

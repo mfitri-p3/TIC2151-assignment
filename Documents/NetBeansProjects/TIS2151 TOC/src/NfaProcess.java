@@ -11,13 +11,19 @@
 import java.util.*;
 
 public class NfaProcess {
-    ArrayList<Integer> alphabetList = new ArrayList<>();
+    ArrayList<String> alphabetList = new ArrayList<>();
+    //ArrayList<Integer> alphabetList = new ArrayList<>();
     private ArrayList<Nfa> stateList = new ArrayList<>();
     
     public NfaProcess(){}
     
     //set alphabet
+    /*
     public void setAlphabet(int alphabet){
+        alphabetList.add(alphabet);
+    }
+    */
+    public void setAlphabet(String alphabet){
         alphabetList.add(alphabet);
     }
     //clear list of alphabets
@@ -61,7 +67,7 @@ public class NfaProcess {
         }
     }
     //set the transition of every state
-    public void setTransition(int alpha, String nextState, String name){
+    public void setTransition(String alpha, String nextState, String name){
         Nfa temp_state = new Nfa(); //set up temporary NFA object
         
         //find the name of the next state
@@ -114,7 +120,8 @@ public class NfaProcess {
         
         // create temporary state for find out the transition of the state 
         Nfa temp_state = new Nfa();
-        int transition_value;
+        //int transition_value;
+        String transition_value;
         // name the temporary state
         String temp_statename = "";
         
@@ -123,7 +130,8 @@ public class NfaProcess {
         try{
             for (int x = 0; x < string.length(); x++) {
                 //convert character to str
-                transition_value = Character.getNumericValue(string.charAt(x));
+                //transition_value = Character.getNumericValue(string.charAt(x));
+                transition_value = String.valueOf(string.charAt(x));
                 System.out.println("Count: " + x + ", Transition value got!");
                 //use temp_state which acts a buffer for an initial state to transit
                 temp_state = start_state.get_transition(transition_value);
