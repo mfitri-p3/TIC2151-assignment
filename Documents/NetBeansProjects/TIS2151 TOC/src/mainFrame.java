@@ -84,7 +84,8 @@ public class mainFrame extends javax.swing.JFrame {
         confirmNfaDefButton = new javax.swing.JButton();
         confirmNfaSetButton = new javax.swing.JButton();
         rgPanel = new javax.swing.JPanel();
-        rgLabel = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        rgTextPane = new javax.swing.JTextPane();
         resetNfaButton = new javax.swing.JButton();
         partTwoTabbedPanel = new javax.swing.JTabbedPane();
         phaseOnePanel = new javax.swing.JPanel();
@@ -230,19 +231,16 @@ public class mainFrame extends javax.swing.JFrame {
         alphaText4.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        varText1.setText("A");
         varText1.setMaximumSize(new java.awt.Dimension(50, 30));
         varText1.setMinimumSize(new java.awt.Dimension(50, 30));
         varText1.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        varText2.setText("B");
         varText2.setMaximumSize(new java.awt.Dimension(50, 30));
         varText2.setMinimumSize(new java.awt.Dimension(50, 30));
         varText2.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        varText3.setText("C");
         varText3.setMaximumSize(new java.awt.Dimension(50, 30));
         varText3.setMinimumSize(new java.awt.Dimension(50, 30));
         varText3.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -273,13 +271,11 @@ public class mainFrame extends javax.swing.JFrame {
         varText8.setPreferredSize(new java.awt.Dimension(30, 30));
 
         startText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        startText.setText("A");
         startText.setMaximumSize(new java.awt.Dimension(50, 30));
         startText.setMinimumSize(new java.awt.Dimension(50, 30));
         startText.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finalText1.setText("C");
         finalText1.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText1.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -478,10 +474,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         rgPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        rgLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rgLabel.setText("No Regular Grammar generated yet");
-        rgLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        rgTextPane.setEditable(false);
+        rgTextPane.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jScrollPane3.setViewportView(rgTextPane);
 
         javax.swing.GroupLayout rgPanelLayout = new javax.swing.GroupLayout(rgPanel);
         rgPanel.setLayout(rgPanelLayout);
@@ -489,14 +484,14 @@ public class mainFrame extends javax.swing.JFrame {
             rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rgPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         rgPanelLayout.setVerticalGroup(
             rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rgPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(rgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -665,6 +660,7 @@ public class mainFrame extends javax.swing.JFrame {
         }
         
         String rgStr = "";
+        StringBuilder mainStr = new StringBuilder();
         
         //rgGen.convertToRG();
         
@@ -702,7 +698,8 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
                 
-                rgStr = rgStr + "\n";
+                mainStr.append(rgStr);
+                mainStr.append("\n");
                 
                 System.out.println("Step " + step + ": " + rgStr);
                 
@@ -714,8 +711,8 @@ public class mainFrame extends javax.swing.JFrame {
         }
         
         //rgLabel.setText(rgGen.getRG_String());
-        System.out.println(rgStr);
-        rgLabel.setText(rgStr);
+        System.out.println(mainStr);
+        rgTextPane.setText(mainStr.toString());
     }//GEN-LAST:event_nfaConvertButtonActionPerformed
 
     private void stringInputField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField2ActionPerformed
@@ -1050,6 +1047,7 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane mainTabbedPane;
     private javax.swing.JButton nfaConvertButton;
     private javax.swing.JPanel nfaPanel;
@@ -1061,8 +1059,8 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel phaseOnePanel;
     private javax.swing.JPanel phaseTwoPanel;
     private javax.swing.JButton resetNfaButton;
-    private javax.swing.JLabel rgLabel;
     private javax.swing.JPanel rgPanel;
+    private javax.swing.JTextPane rgTextPane;
     private javax.swing.JTextField startText;
     private javax.swing.JTextField stringInputField1;
     private javax.swing.JTextField stringInputField2;
