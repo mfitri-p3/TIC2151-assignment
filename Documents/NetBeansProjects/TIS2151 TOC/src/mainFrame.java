@@ -1,8 +1,6 @@
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import javax.swing.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,11 +19,11 @@ public class mainFrame extends javax.swing.JFrame {
      */
     public mainFrame() {
         initComponents();
-        
     }
     //Initialise your process classes here!
     //START
     NfaProcess nfaProcess = new NfaProcess();
+    RegularGrammar rgGen = new RegularGrammar();
         
     //END
 
@@ -86,8 +84,11 @@ public class mainFrame extends javax.swing.JFrame {
         confirmNfaDefButton = new javax.swing.JButton();
         confirmNfaSetButton = new javax.swing.JButton();
         rgPanel = new javax.swing.JPanel();
+        rgLabel = new javax.swing.JLabel();
+        resetNfaButton = new javax.swing.JButton();
         partTwoTabbedPanel = new javax.swing.JTabbedPane();
         phaseOnePanel = new javax.swing.JPanel();
+        phaseOneDeskPane = new javax.swing.JDesktopPane();
         phaseTwoPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,6 +123,7 @@ public class mainFrame extends javax.swing.JFrame {
 
         nfaConvertButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nfaConvertButton.setText("Convert to RG");
+        nfaConvertButton.setEnabled(false);
         nfaConvertButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nfaConvertButtonActionPerformed(evt);
@@ -204,17 +206,18 @@ public class mainFrame extends javax.swing.JFrame {
         jLabel4.setText("Final(s)");
 
         alphaText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText1.setText("0");
         alphaText1.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText1.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText1.setPreferredSize(new java.awt.Dimension(30, 30));
 
         alphaText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alphaText2.setText("1");
         alphaText2.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText2.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText2.setPreferredSize(new java.awt.Dimension(30, 30));
 
         alphaText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        alphaText3.setEnabled(false);
         alphaText3.setMaximumSize(new java.awt.Dimension(50, 30));
         alphaText3.setMinimumSize(new java.awt.Dimension(50, 30));
         alphaText3.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -227,16 +230,19 @@ public class mainFrame extends javax.swing.JFrame {
         alphaText4.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText1.setText("A");
         varText1.setMaximumSize(new java.awt.Dimension(50, 30));
         varText1.setMinimumSize(new java.awt.Dimension(50, 30));
         varText1.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText2.setText("B");
         varText2.setMaximumSize(new java.awt.Dimension(50, 30));
         varText2.setMinimumSize(new java.awt.Dimension(50, 30));
         varText2.setPreferredSize(new java.awt.Dimension(30, 30));
 
         varText3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        varText3.setText("C");
         varText3.setMaximumSize(new java.awt.Dimension(50, 30));
         varText3.setMinimumSize(new java.awt.Dimension(50, 30));
         varText3.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -267,11 +273,13 @@ public class mainFrame extends javax.swing.JFrame {
         varText8.setPreferredSize(new java.awt.Dimension(30, 30));
 
         startText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        startText.setText("A");
         startText.setMaximumSize(new java.awt.Dimension(50, 30));
         startText.setMinimumSize(new java.awt.Dimension(50, 30));
         startText.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        finalText1.setText("C");
         finalText1.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText1.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText1.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -292,25 +300,21 @@ public class mainFrame extends javax.swing.JFrame {
         finalText4.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finalText5.setEnabled(false);
         finalText5.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText5.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText5.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finalText6.setEnabled(false);
         finalText6.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText6.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText6.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finalText7.setEnabled(false);
         finalText7.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText7.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText7.setPreferredSize(new java.awt.Dimension(30, 30));
 
         finalText8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        finalText8.setEnabled(false);
         finalText8.setMaximumSize(new java.awt.Dimension(50, 30));
         finalText8.setMinimumSize(new java.awt.Dimension(50, 30));
         finalText8.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -318,6 +322,7 @@ public class mainFrame extends javax.swing.JFrame {
         nfaTransitTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         nfaTransitTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -473,16 +478,35 @@ public class mainFrame extends javax.swing.JFrame {
 
         rgPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        rgLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        rgLabel.setText("No Regular Grammar generated yet");
+        rgLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout rgPanelLayout = new javax.swing.GroupLayout(rgPanel);
         rgPanel.setLayout(rgPanelLayout);
         rgPanelLayout.setHorizontalGroup(
             rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(rgPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         rgPanelLayout.setVerticalGroup(
             rgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 191, Short.MAX_VALUE)
+            .addGroup(rgPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rgLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        resetNfaButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        resetNfaButton.setText("Reset NFA");
+        resetNfaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetNfaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout partOnePanelLayout = new javax.swing.GroupLayout(partOnePanel);
         partOnePanel.setLayout(partOnePanelLayout);
@@ -500,7 +524,8 @@ public class mainFrame extends javax.swing.JFrame {
                                 .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stringLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(resetNfaButton))
                             .addGroup(partOnePanelLayout.createSequentialGroup()
                                 .addComponent(stringInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -548,9 +573,11 @@ public class mainFrame extends javax.swing.JFrame {
                         .addComponent(nfaConvertButton))
                     .addComponent(stringLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(stringLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(partOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(stringInputField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stringLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(resetNfaButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rgPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(544, 544, 544))
@@ -559,16 +586,38 @@ public class mainFrame extends javax.swing.JFrame {
         mainTabbedPane.addTab("Part 1 (NFA to RG)", partOnePanel);
 
         partTwoTabbedPanel.setName(""); // NOI18N
+        partTwoTabbedPanel.setPreferredSize(new java.awt.Dimension(745, 720));
+
+        phaseOnePanel.setPreferredSize(new java.awt.Dimension(740, 720));
+
+        phaseOneDeskPane.setPreferredSize(new java.awt.Dimension(720, 500));
+
+        javax.swing.GroupLayout phaseOneDeskPaneLayout = new javax.swing.GroupLayout(phaseOneDeskPane);
+        phaseOneDeskPane.setLayout(phaseOneDeskPaneLayout);
+        phaseOneDeskPaneLayout.setHorizontalGroup(
+            phaseOneDeskPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
+        phaseOneDeskPaneLayout.setVerticalGroup(
+            phaseOneDeskPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout phaseOnePanelLayout = new javax.swing.GroupLayout(phaseOnePanel);
         phaseOnePanel.setLayout(phaseOnePanelLayout);
         phaseOnePanelLayout.setHorizontalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 740, Short.MAX_VALUE)
+            .addGroup(phaseOnePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(phaseOneDeskPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         phaseOnePanelLayout.setVerticalGroup(
             phaseOnePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1127, Short.MAX_VALUE)
+            .addGroup(phaseOnePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(phaseOneDeskPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(616, Short.MAX_VALUE))
         );
 
         partTwoTabbedPanel.addTab("Phase One (CFG to CNF)", phaseOnePanel);
@@ -611,7 +660,60 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_stringInputField4ActionPerformed
 
     private void nfaConvertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nfaConvertButtonActionPerformed
-        // TODO add your handling code here:
+        for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+            rgGen.addState(nfaProcess.getState(i));
+        }
+        
+        String rgStr = "";
+        
+        //rgGen.convertToRG();
+        
+        ArrayList<Nfa> nfaList = nfaProcess.getStateList();
+        ArrayList<Integer> alphaList = nfaProcess.alphabetList;
+        
+        try{
+            int step = 1;
+            for (Nfa nfaTemp : nfaList) {
+                if (nfaTemp.start_state == true) {
+                    rgStr = nfaTemp.state_name + " -> "; //first part of the grammar line
+                    for (int key : alphaList){ //secord part of the grammar line
+                        rgStr = rgStr + String.valueOf(key);
+                        rgStr = rgStr + nfaTemp.get_transition(key).state_name;
+                        rgStr = rgStr + " | ";
+                    }
+                
+                    if (nfaTemp.final_state == true) {
+                        rgStr = rgStr + "e";
+                    }
+                    
+                    ;
+                }
+                
+                if (nfaTemp.start_state == false) {
+                    rgStr = nfaTemp.state_name + " -> "; //first part of the grammar line
+                    for (int key : alphaList){ //secord part of the grammar line
+                        rgStr = rgStr + String.valueOf(key);
+                        rgStr = rgStr + nfaTemp.get_transition(key).state_name;
+                        rgStr = rgStr + " | ";
+                    }
+                
+                    if (nfaTemp.final_state == true) {
+                        rgStr = rgStr + "e";
+                    }
+                }
+                
+                System.out.println("Step " + step + ": " + rgStr);
+                
+                step++;
+            }
+        }
+        catch(Exception e){
+            System.out.println("NFA to G conversion failed!");
+        }
+        
+        //rgLabel.setText(rgGen.getRG_String());
+        System.out.println(rgStr);
+        rgLabel.setText(rgStr);
     }//GEN-LAST:event_nfaConvertButtonActionPerformed
 
     private void stringInputField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringInputField2ActionPerformed
@@ -665,12 +767,25 @@ public class mainFrame extends javax.swing.JFrame {
         try{
             //for NFA alphabets
             nfaProcess.clearAlphabets(); //Clear memory of alphabets
-            nfaProcess.setAlphabet(alphaText1.getText());
-            nfaProcess.setAlphabet(alphaText2.getText());
+            if (!alphaText1.getText().isBlank()) {
+                nfaProcess.setAlphabet(Integer.parseInt(alphaText1.getText()));
+                //rgGen.addAlpha(Integer.getInteger(alphaText1.getText()));
+                nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
+            }
+            if (!alphaText2.getText().isBlank()) {
+                nfaProcess.setAlphabet(Integer.parseInt(alphaText2.getText()));
+                //rgGen.addAlpha(Integer.getInteger(alphaText2.getText()));
+                nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
+            }
+            if (!alphaText3.getText().isBlank()) {
+                nfaProcess.setAlphabet(Integer.parseInt(alphaText3.getText()));
+                //rgGen.addAlpha(Integer.getInteger(alphaText3.getText()));
+                nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
+            }
             //nfaProcess.setAlphabet(alphaText3.getText());
             //nfaProcess.setAlphabet(alphaText4.getText(), 3);
-            nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
-            nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
+            //nfaTransitTable.setValueAt(alphaText1.getText(), 0, 1);
+            //nfaTransitTable.setValueAt(alphaText2.getText(), 0, 2);
             //nfaTransitTable.setValueAt(alphaText3.getText(), 0, 3);
             //nfaTransitTable.setValueAt(alphaText4.getText(), 0, 4);
 
@@ -755,6 +870,38 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
             }
+            if (!finalText5.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText5.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText5.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText6.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText6.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText6.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText7.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText7.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText7.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
+            if (!finalText8.getText().equals("")) {
+                for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                    if (finalText8.getText().equals(nfaProcess.getStateList().get(i).get_statename())) {
+                        nfaProcess.setFinal(finalText8.getText());
+                        nfaTransitTable.setValueAt(nfaProcess.getState(i).get_statename() + "*", ++i, 0);
+                    }
+                }
+            }
         }
         catch(NullPointerException npe){
             System.out.println("NullPointerException found in confirmNfaDefButton");
@@ -772,7 +919,7 @@ public class mainFrame extends javax.swing.JFrame {
         try{
             for (int y = 1; y <= nfaProcess.alphabetList.size(); y++) {
                 for (int x = 1; x <= nfaProcess.getStateList().size(); x++) {
-                    if (nfaTransitTable.getValueAt(x, y) != "" || nfaTransitTable.getValueAt(x, y) != null) {
+                    if (nfaTransitTable.getValueAt(x, y).toString() != "" || nfaTransitTable.getValueAt(x, y) != null) {
                         System.out.println("Cell : x=" + x + ", y= " + y);
                         transit_alpha = Character.getNumericValue(nfaTransitTable.getValueAt(0, y).toString().charAt(0));
                         next_state = (nfaProcess.getState(nfaTransitTable.getValueAt(x, y).toString()));
@@ -783,13 +930,48 @@ public class mainFrame extends javax.swing.JFrame {
                     }
                 }
             }
+            
+            for (int i = 0; i < nfaProcess.getStateList().size(); i++) {
+                rgGen.addState(nfaProcess.getState(i));
+            }
         }
         catch(NullPointerException e){
             System.out.println("NullPointerException from confirmNfaSetButton");
         }
         
         checkStringButton.setEnabled(true);
+        nfaConvertButton.setEnabled(true);
     }//GEN-LAST:event_confirmNfaSetButtonActionPerformed
+
+    private void resetNfaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetNfaButtonActionPerformed
+        nfaProcess.clearAlphabets();
+        nfaProcess.clearStates();
+        
+        alphaText1.setText("");
+        alphaText2.setText("");
+        alphaText3.setText("");
+        
+        varText1.setText("");
+        varText2.setText("");
+        varText3.setText("");
+        varText4.setText("");
+        varText5.setText("");
+        varText6.setText("");
+        varText7.setText("");
+        varText8.setText("");
+        
+        startText.setText("");
+        
+        finalText1.setText("");
+        finalText2.setText("");
+        finalText3.setText("");
+        finalText4.setText("");
+        finalText5.setText("");
+        finalText6.setText("");
+        finalText7.setText("");
+        finalText8.setText("");
+        
+    }//GEN-LAST:event_resetNfaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -824,6 +1006,21 @@ public class mainFrame extends javax.swing.JFrame {
                 new mainFrame().setVisible(true);
             }
         });
+        
+        try{
+            View view = new View();
+            Model model = new Model();
+            Control control = new Control(view,model);
+            //view.setVisible(true);
+            
+            //JInternalFrame phaseOneFrame = new JInternalFrame();
+            JPanel phaseOneIntPanel = new JPanel();
+            phaseOneIntPanel.add(view);
+            //phaseOneDeskPane
+        }
+        catch(Exception e){
+            System.out.println("Exception catched, unable to display Part 2 Phase One");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -858,8 +1055,11 @@ public class mainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel partOnePanel;
     private javax.swing.JLabel partOneTitleLabel;
     private javax.swing.JTabbedPane partTwoTabbedPanel;
+    private javax.swing.JDesktopPane phaseOneDeskPane;
     private javax.swing.JPanel phaseOnePanel;
     private javax.swing.JPanel phaseTwoPanel;
+    private javax.swing.JButton resetNfaButton;
+    private javax.swing.JLabel rgLabel;
     private javax.swing.JPanel rgPanel;
     private javax.swing.JTextField startText;
     private javax.swing.JTextField stringInputField1;

@@ -67,6 +67,14 @@ public class Nfa {
         return (to_transition.get(to_int));
     }
     /*
+    public int get_trans_alpha(int index){
+        Object[] tempArray = to_transition.keySet().toArray();
+        //int tempKey = Integer.decode(tempArray[index].toString());
+        int tempKey = (int) tempArray[index];
+        return (tempKey);
+    }
+    */
+    /*
     public Nfa get_char_transition(char to_char)
     {
         return (char_to_transition.get(to_char));

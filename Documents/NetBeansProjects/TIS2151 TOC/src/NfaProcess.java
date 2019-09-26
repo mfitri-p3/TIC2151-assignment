@@ -9,16 +9,15 @@
  * @author mfitr
  */
 import java.util.*;
-import java.lang.Integer;
 
 public class NfaProcess {
-    ArrayList<String> alphabetList = new ArrayList<>();
-    private ArrayList<Nfa> stateList = new ArrayList();
+    ArrayList<Integer> alphabetList = new ArrayList<>();
+    private ArrayList<Nfa> stateList = new ArrayList<>();
     
     public NfaProcess(){}
     
     //set alphabet
-    public void setAlphabet(String alphabet){
+    public void setAlphabet(int alphabet){
         alphabetList.add(alphabet);
     }
     //clear list of alphabets
